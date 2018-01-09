@@ -1,0 +1,385 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~materialize-css/dist/css/materialize.min.css';
+
+
+
+.collapsible-table{
+    font-size: 0.9em;
+    
+}
+
+collapsible-table-row{
+    color: black;
+    margin-top: 10px;
+}
+
+
+collapsible-table-row.pending-element{
+    color: gray;
+    border: 1.5px solid darkgray;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e0e0e0+2,f7f7f7+35,feffff+100 */
+    background: #e0e0e0; /* Old browsers */
+    background: -moz-linear-gradient(left, #e0e0e0 2%, #f7f7f7 35%, #feffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #e0e0e0 2%,#f7f7f7 35%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #e0e0e0 2%,#f7f7f7 35%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
+
+}
+
+
+collapsible-table-row.running-element{
+    color: blue;
+    border: 1.5px solid blue;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0d8ef+0,ddf1f9+34,feffff+100 */
+    background: #a0d8ef; /* Old browsers */
+    background: -moz-linear-gradient(left, #a0d8ef 0%, #ddf1f9 34%, #feffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #a0d8ef 0%,#ddf1f9 34%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #a0d8ef 0%,#ddf1f9 34%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0d8ef', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
+    
+}
+
+collapsible-table-row.rejected-element{
+    color: red;
+    border: 1.5px solid red;    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ddadad+2,f4d7d7+35,feffff+100 */
+    background: #ddadad; /* Old browsers */
+    background: -moz-linear-gradient(left, #ddadad 2%, #f4d7d7 35%, #feffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #ddadad 2%,#f4d7d7 35%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #ddadad 2%,#f4d7d7 35%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddadad', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
+    
+}
+
+collapsible-table-row.complete-element{
+    color: forestgreen;
+    border: 1.5px solid forestgreen;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#c3d8ad+2,edf2ed+35,feffff+100 */
+    background: #c3d8ad; /* Old browsers */
+    background: -moz-linear-gradient(left, #c3d8ad 2%, #edf2ed 35%, #feffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #c3d8ad 2%,#edf2ed 35%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #c3d8ad 2%,#edf2ed 35%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c3d8ad', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
+    
+}
+
+collapsible-table-row.accepted-element{
+    color: forestgreen;
+    border: 1.5px solid forestgreen;
+    
+    background: #c3d8ad; /* Old browsers */
+    background: -moz-linear-gradient(left, #c3d8ad 2%, #edf2ed 35%, #feffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #c3d8ad 2%,#edf2ed 35%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #c3d8ad 2%,#edf2ed 35%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c3d8ad', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
+    
+}
+
+
+collapsible-table-row-detail table tr td{
+    vertical-align: top;
+}
+
+
+collapsible-table{
+    width: 80%;
+}
+
+.firewall-pending-element svg path{
+    fill: gray;
+}
+
+.firewall-accepted-element svg path{
+    fill: green;
+}
+
+
+.firewall-running-element svg path{
+    fill: blue;
+}
+
+.firewall-rejected-element svg path{
+    fill: red;
+}
+
+.build-complete-element svg path{
+    fill: green;
+}
+
+.build-pending-element svg path{
+    fill: gray;
+}
+
+.box-pending-element{
+    padding-top: 40px;
+    padding-left: 20px;
+    border: 2px solid gray;
+    background-color: darkgray;
+}
+
+
+.gray-box{
+    padding-top: 40px;
+    padding-left: 1px;
+    width: 50%;
+    border: 2px solid gray;
+    background-color: darkgray;
+}
+
+.red-box{
+    padding-top: 40px;
+    padding-left: 1px;
+    width: 50%;
+    border: 2px solid darkred;
+    background-color: red;
+}
+
+.green-box{
+    padding-top: 40px;
+    padding-left: 1px;
+    width: 50%;
+    border: 2px solid forestgreen;
+    background-color: green;
+}
+
+
+.blue-box{
+    padding-top: 40px;
+    padding-left: 1px;
+    width: 50%;
+    border: 2px solid blue;
+    background-color: lightskyblue;
+    padding-top: 40px;
+    padding-left: 1px;
+    width: 50%;
+    border: 2px solid blue;
+    background-color: royalblue;
+
+    
+}
+
+.blue-progress-box{
+    padding-top: 40px;
+    width: 50%;
+    border: 2px solid grey;
+    background-color: dodgerblue;
+    border-right-width: 20px;
+    
+    
+}
+
+.metrics-detail-gray-box, .build-detail-gray-box, .func-test-detail-gray-box, .unit-test-detail-gray-box{
+    padding-top: 0px;
+    padding-left: 1px;
+    width: 100%;
+    border: 2px solid gray;
+    background-color: white;
+    height: 100%;
+    
+}
+
+
+.metrics-detail-green-box, .build-detail-green-box, .func-test-detail-green-box, .unit-test-detail-green-box{
+    padding-top: 0px;
+    padding-left: 1px;
+    width: 100%;
+    border: 2px solid forestgreen;
+    background-color: white;
+    height: 100%;
+}
+
+.metrics-detail-red-box, .build-detail-red-box, .func-test-detail-red-box, .unit-test-detail-red-box{
+    padding-top: 0px;
+    padding-left: 1px;
+    width: 100%;
+    border: 2px solid red;
+    background-color: white;
+    height: 100%;
+}
+
+
+.metrics-detail-title-green-box, .build-detail-title-green-box, .func-test-title-green-box, .unit-test-title-green-box{
+    color: forestgreen;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.metrics-detail-title-red-box, .build-detail-title-red-box, .func-test-title-red-box, .unit-test-title-red-box {
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+.metrics-detail-title-gray-box, .build-detail-title-gray-box, .func-test-title-gray-box , .unit-test-title-gray-box  {
+    color: gray;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.arrow-up-icon{
+    text-align: center;
+    position: relative;
+}
+
+.arrow-up-icon svg path{
+    fill: green;
+    z-index: -1;
+}
+
+
+.arrow-down-icon{
+    text-align: center;
+    position: relative;
+}
+
+.arrow-down-icon svg path{
+    fill: red;
+    z-index: -1;
+}
+
+
+.arrow-right-icon{
+    text-align: center;
+    position: relative;
+}
+
+.arrow-right-icon svg path{
+    fill: khaki;
+    z-index: -1;
+}
+
+
+
+.number-maintainability-lbl-arrow-down-icon, .number-security-lbl-arrow-down-icon,
+.number-workmanship-lbl-arrow-down-icon, .number-test-lbl-arrow-down-icon{
+    color: white;
+    font-size: 1.2em;
+    position: absolute;
+    top:  20%;
+    width: 100%;
+    text-align: center;
+}
+
+.number-maintainability-lbl-arrow-up-icon, .number-security-lbl-arrow-up-icon,
+.number-workmanship-lbl-arrow-up-icon, .number-test-lbl-arrow-up-icon{
+    color: white;
+    position: absolute;
+    top: 30%;
+    font-size: 1.2em;
+    width: 100%;
+    text-align:center;
+}
+
+.number-maintainability-lbl-arrow-right-icon, .number-security-lbl-arrow-right-icon,
+.number-workmanship-lbl-arrow-right-icon, .number-test-lbl-arrow-right-icon{
+    color: black;
+    font-size: 1.2em;
+    position: absolute;
+    top:  20%;
+    width: 100%;
+    text-align: center;
+}
+
+.build-debug-computer, .build-release-computer{
+    fill: lightskyblue;
+    width: 69px;
+    height: 69px;
+    margin: auto;
+}
+
+
+
+.lbl-build-detail-debug, .lbl-build-detail-release, .footer-build-timestamp{
+    text-align: center;
+}
+
+collapsible-body table{
+    height: 100%;
+}
+
+.pie-chart-container{
+    width: 150px;
+    height: 150px;
+}
+
+.func-test-big-number{
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.green-percentage{
+    color: green;
+}
+
+.red-percentage{
+    color: red;
+}
+
+.yellow-percentage{
+    color: khaki;
+}
+
+.func-test-big-number-lbl{
+    font-size: 0.5em;
+    color: black;
+    text-align: center;
+}
+
+.unit-test-big-number-lbl{
+    font-size: 0.5em;
+    color: black;
+    text-align: center;
+}
+
+.line-percentage-component div{
+    width: 100%;
+}
+
+
+
+.line-percentage-component .horizontal-bar-percentage-container {
+    background-color: lightpink;
+    text-align: left;
+}
+
+
+
+.line-percentage-component .text-percentage{
+    text-align: center;
+    font-size: 1.2em;
+    background-color: lightgreen;
+    height: 50px;
+}
+
+.result-lbl{
+    text-align: center;
+    font-weight: bold;
+}
+
+.result-text{
+    text-align: center;
+    
+}
+
+.result-text .small-text{
+    font-size: 1em;
+}
+
+.result-text .big-text{
+    font-size: 2em;
+}
+
+.further-action-button{
+    background-color: lightskyblue;
+    color: white;
+    text-align: center;
+}
+
+.container-further-details{
+    text-align: center;
+}

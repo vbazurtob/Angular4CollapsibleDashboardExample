@@ -1,0 +1,311 @@
+<script src="node_modules/chart.js/src/chart.js"></script>
+<script src="node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js"></script>
+
+<section>
+    <collapsible-table [type]="'accordion'" bordered class="collapsible-table">
+        
+        <thead>
+            <collapsible-table-row>
+                <th>&nbsp;</th>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Time Started</th>
+                <th>State</th>
+                <th>Metrics</th>
+                <th>Build</th>
+                <th>Unit Test</th>
+                <th>Functional Test</th>
+            </collapsible-table-row>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let metric of listMetrics" >
+                <collapsible-table-row   [detail]="row" [class]="getClassForState(metric.state)" (click)="cleanFurtherDetailsBox($event)" #rowMaster>
+                    <td>
+                        <div *ngIf="metric.type=='firewall'" [class]="'firewall-'+getClassForState(metric.state)">
+                           <app-svg-firewall></app-svg-firewall>
+                        </div>
+                        
+                        <div *ngIf="metric.type=='build'" [class]="'build-'+getClassForState(metric.state)">
+                            <app-svg-computer></app-svg-computer>
+                        </div>
+                    </td>
+                    <td>{{metric.name}}</td>
+                    <td>{{metric.owner}}</td>
+                    <td>{{metric.time}}</td>
+                    <td>{{metric.state}}</td>
+                    <td width="10%">
+                        <div [class]="metric.metrics.boxColor">
+                        </div>
+                    </td>
+                    <td width="10%"> 
+                        
+                        <div [class]="metric.build.boxColor">
+                        </div> 
+                    </td>
+                    <td width="10%">
+                        <div [class]="metric.unitTest.boxColor">
+                        </div>
+                        
+                    </td>
+                    <td width="10%">
+                        <div [class]="metric.functionalTest.boxColor">
+                        </div>                        
+                    </td>
+                </collapsible-table-row>
+            
+                <collapsible-table-row-detail  #row>
+                    <table *ngIf="metric.state!='Pending' && metric.state!='Running'">
+                            <tr>
+                                <td>
+                                    <div [class]="'metrics-detail-' + metric.metrics.boxColor"  (click)="getFurtherDetailsForMetricCategory($event, metric.metrics)">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div [class]="'metrics-detail-title-' + metric.metrics.boxColor ">
+                                                            Metrics
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div *ngIf="getArrowClass(metric.metrics.testArrow)!=''" [class]="getArrowClass(metric.metrics.testArrow)">
+                                                                                                                        
+                                                            <app-svg-arrow-up *ngIf="metric.metrics.testArrow==='up'"></app-svg-arrow-up>
+                                                            
+                                                            <app-svg-arrow-down *ngIf="metric.metrics.testArrow==='down'"></app-svg-arrow-down>
+                                                            
+                                                            <app-svg-arrow-right *ngIf="metric.metrics.testArrow==='right'"></app-svg-arrow-right>
+                                                            
+                                                            <div [class]="'number-test-lbl-'+getArrowClass(metric.metrics.testArrow)">
+                                                                {{metric.metrics.test}}
+                                                            </div>
+                                                            <div style="text-align: center">
+                                                                Test
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div *ngIf="getArrowClass(metric.metrics.maintArrow)!=''" [class]="getArrowClass(metric.metrics.maintArrow)">
+                                                            
+                                                            <app-svg-arrow-up *ngIf="metric.metrics.maintArrow==='up'"></app-svg-arrow-up>
+                                                            
+                                                            <app-svg-arrow-down *ngIf="metric.metrics.maintArrow==='down'"></app-svg-arrow-down>
+                                                            
+                                                            <app-svg-arrow-right *ngIf="metric.metrics.maintArrow==='right'"></app-svg-arrow-right>
+                                                            
+                                                            
+                                                            <div [class]="'number-maintainability-lbl-'+getArrowClass(metric.metrics.maintArrow)">
+                                                                {{metric.metrics.maintainability}}                                                        
+                                                            </div>
+                                                            <div style="text-align: center">
+                                                                Maintainability
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div *ngIf="getArrowClass(metric.metrics.securityArrow)!=''" [class]="getArrowClass(metric.metrics.securityArrow)">
+                                                            
+                                                            <app-svg-arrow-up *ngIf="metric.metrics.securityArrow === 'up'"></app-svg-arrow-up>
+                                                            <app-svg-arrow-down *ngIf="metric.metrics.securityArrow === 'down'"></app-svg-arrow-down>
+                                                            <app-svg-arrow-right *ngIf="metric.metrics.securityArrow === 'right'"></app-svg-arrow-right>
+                                                            
+                                                            <div [class]="'number-security-lbl-'+getArrowClass(metric.metrics.securityArrow)">
+                                                                {{metric.metrics.security}}
+                                                            </div>
+                                                            <div style="text-align: center">
+                                                                Security
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div *ngIf="getArrowClass(metric.metrics.workmanArrow)!=''" [class]="getArrowClass(metric.metrics.workmanArrow)">
+                                                            
+                                                            <app-svg-arrow-up *ngIf="metric.metrics.workmanArrow === 'up'"></app-svg-arrow-up>
+                                                            <app-svg-arrow-down *ngIf="metric.metrics.workmanArrow === 'down'"></app-svg-arrow-down>
+                                                            <app-svg-arrow-right *ngIf="metric.metrics.workmanArrow === 'right'"></app-svg-arrow-right>
+                                                            
+                                                            <div [class]="'number-workmanship-lbl-'+getArrowClass(metric.metrics.workmanArrow)">
+                                                                {{metric.metrics.workmanship}}
+                                                            </div>
+                                                            <div style="text-align: center">
+                                                                Workmanship
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div [class]="'build-detail-' + metric.build.boxColor"  (click)="getFurtherDetailsForMetricCategory($event, metric.build)">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div [class]="'build-detail-title-' + metric.build.boxColor ">
+                                                            Build 
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class='build-debug-computer'>
+                                                            <app-svg-computer></app-svg-computer>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class='build-release-computer'>
+                                                            <app-svg-computer></app-svg-computer>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="lbl-build-detail-debug">
+                                                            Debug
+                                                        </div>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="lbl-build-detail-release">
+                                                            Release
+                                                        </div>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="footer-build-timestamp">
+                                                            {{metric.build.timestamp}}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </td>
+                                
+                                <td>
+                                    <div [class]="'unit-test-detail-' + metric.unitTest.boxColor" (click)="getFurtherDetailsForMetricCategory($event, metric.unitTest)">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div [class]="'unit-test-title-' + metric.unitTest.boxColor ">
+                                                            Unit Test
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                 <td>
+                                                    
+                                                    <app-pie-chart passed="{{metric.unitTest.passed}}" failed="{{metric.unitTest.failed}}" ></app-pie-chart>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <div class="func-test-big-number {{getCssClassByPercentage(getTestPercentage(metric.unitTest))}}">
+                                                        {{ getTestPercentage(metric.unitTest) }} %
+                                                            <div class="unit-test-big-number-lbl">tests passed</div>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <app-chart-line-percentage class="line-percentage-component" [percentageCovered]="metric.unitTest.covered" >
+                                                        </app-chart-line-percentage>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                </td>
+                                
+                                <td>
+
+                                    <div [class]="'func-test-detail-' + metric.functionalTest.boxColor"  (click)="getFurtherDetailsForMetricCategory($event, metric.functionalTest)">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div [class]="'func-test-title-' + metric.functionalTest.boxColor ">
+                                                            Functional Test
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        
+                                                        <app-pie-chart passed="{{metric.functionalTest.passed}}" failed="{{metric.functionalTest.failed}}" ></app-pie-chart>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                    
+                                                        
+                                                        <div class="func-test-big-number {{getCssClassByPercentage(getTestPercentage(metric.functionalTest))}}">
+                                                        {{ getTestPercentage(metric.functionalTest) }} %
+                                                            <div class="func-test-big-number-lbl">tests passed</div>
+                                                        </div>
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <app-chart-line-percentage class="line-percentage-component" [percentageCovered]="metric.functionalTest.covered" >
+                                                        </app-chart-line-percentage>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                    
+                                </td>
+                              
+                                
+                                <td>
+                                    <div class="container-further-details"  [style.display]="furtherDetailsDisplayCssType">
+                                        <div class="result-lbl">Result:</div>
+                                        <div class="result-text">
+                                            <div class="small-text">{{resultSmallText}}</div>
+                                            <div class="big-text">{{resultBigText}}</div>
+                                            
+                                        </div>
+                                        <button class="further-action-button">
+                                            {{resultButtonText}}
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                    </table>
+                </collapsible-table-row-detail>  
+            
+            </ng-container>
+             
+        </tbody>
+        
+        
+    </collapsible-table>
+</section>
+
+<h4>Credits of images used on this demo</h4>
+
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www
+.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/butterflytronics" title="Butterflytronics">Butterflytronics</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+<div>
+Collapsible rows implemented with the <a href="https://www.npmjs.com/package/angular2-collapsible" title="angular2-collapsible npm module">angular2-collapsible</a> npm module
+</div>
