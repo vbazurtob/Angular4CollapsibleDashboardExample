@@ -1,11 +1,13 @@
-Angular4-based Collapsible Dashboard Interface Example
+# Angular4-based Collapsible Dashboard Interface Example
+
+Author:Voltaire Bazurto Blacio
 
 This interface was developed in Angular 4 as an interactive example of a collapsible dashboard. The collapsible effect was achievied by using the
 angular2-collapsible npm module that can be obtained at https://www.npmjs.com/package/angular2-collapsible.
 
 The project was built using angular 4 and tested over node.js 9.x. 
 
-Installation
+## Installation
 
 After downloading the project and accessing the root project folder:
 
