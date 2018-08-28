@@ -6,16 +6,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'metrics',
+    path: 'index.html',
     component: DashboardComponent,
     
   },
   
   {
     path: '',
-    redirectTo: '/metrics',
+    redirectTo: '/index.html',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
