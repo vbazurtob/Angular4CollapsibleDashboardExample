@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ChartLinePercentageComponent implements OnInit {
 
 @Input()
-private percentageCovered: number;
+public percentageCovered: number;
 private percentageNotCovered: number;
 
   constructor() { 
